@@ -114,6 +114,52 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 .date-meta span::before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--sand)}
 .date-meta span:first-child::before{display:none}
 
+/* ── CALENDAR ── */
+.calendar-section{
+  text-align:center;
+  padding:5rem 2rem 6rem;
+  border-bottom:.5px solid var(--rule);
+}
+.cal-eyebrow{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:#333;margin-bottom:2.2rem}
+.cal-card{
+  width:300px;max-width:100%;
+  margin:0 auto;
+  border:.5px solid var(--rule);
+  background:var(--paper);
+}
+.cal-head{
+  text-align:center;padding:1.6rem 0 1.2rem;
+  border-bottom:.5px solid var(--rule);
+}
+.cal-month{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;letter-spacing:.02em;color:var(--ink)}
+.cal-year{font-size:11px;letter-spacing:.2em;color:#333;margin-top:.3rem;display:block}
+.cal-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  padding:1.4rem 1.4rem 1.6rem;
+}
+.cal-dow{
+  text-align:center;font-size:10px;letter-spacing:.08em;
+  color:#333;text-transform:uppercase;
+  padding-bottom:.9rem;
+}
+.cal-day{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:34px;
+  font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--ink);
+}
+.cal-day.empty{visibility:hidden}
+.cal-day.circled{font-weight:600}
+.cal-day.circled::before{
+  content:'';position:absolute;
+  width:32px;height:32px;border-radius:50%;
+  border:1.5px solid var(--sand);
+}
+.cal-foot{
+  text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:#333;padding:0 0 1.6rem;
+}
+
 /* ── INVITE ── */
 .invite{
   display:grid;
@@ -210,7 +256,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
   color:var(--ink);
 }
 .form-header{text-align:center;margin-bottom:5rem}
-.form-header-tag{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+.form-header-tag{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#333;margin-bottom:1.4rem}
 .form-header h2{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(44px,6vw,72px);
@@ -220,8 +266,8 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 .form-inner{max-width:520px;margin:0 auto}
 
 .f-section-label{
-  font-size:9px;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--muted);
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color:#333;
   display:flex;align-items:center;gap:12px;
   margin:3rem 0 1.6rem;
 }
@@ -230,8 +276,8 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 
 .field{margin-bottom:1.2rem}
 .field label{
-  display:block;font-size:9px;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--muted);
+  display:block;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:#333;
   margin-bottom:7px;
 }
 .field label .req{color:#C8BFB0;margin-left:2px}
@@ -244,42 +290,42 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
   border:none;
   border-bottom:.5px solid var(--rule);
   padding:10px 0;
-  font-family:'Jost',sans-serif;font-weight:300;font-size:14px;
+  font-family:'Jost',sans-serif;font-weight:300;font-size:15.5px;
   color:var(--ink);outline:none;
   transition:border-color .2s;
   border-radius:0;
 }
-.field input::placeholder,.field textarea::placeholder{color:rgba(0,0,0,.2)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(0,0,0,.32)}
 .field input:focus,.field textarea:focus{border-bottom-color:var(--ink)}
 .field textarea{resize:none;min-height:68px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
 .tag{
-  font-family:'Jost',sans-serif;font-weight:300;
-  font-size:11px;letter-spacing:.06em;
-  padding:6px 15px;
-  border:.5px solid rgba(255,255,255,.18);
-  color:rgba(255,255,255,.5);
+  font-family:'Jost',sans-serif;font-weight:400;
+  font-size:13px;letter-spacing:.06em;
+  padding:9px 18px;
+  border:none;
+  color:var(--ink);
   cursor:pointer;
   transition:all .15s;user-select:none;
-  background:transparent;
+  background:rgba(0,0,0,.05);
 }
 .tag input{display:none}
-.tag:hover{border-color:var(--ink);color:var(--ink)}
-.tag.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tag:hover{background:rgba(0,0,0,.1)}
+.tag.on{background:var(--ink);color:var(--paper)}
 
 .counter{display:flex;align-items:center;gap:14px;margin-top:4px}
 .c-btn{
-  width:30px;height:30px;
-  border:.5px solid rgba(255,255,255,.2);
-  background:transparent;color:#fff;
-  font-size:18px;cursor:pointer;
+  width:34px;height:34px;
+  border:none;
+  background:rgba(0,0,0,.05);color:var(--ink);
+  font-size:20px;font-weight:500;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:background .15s;font-family:'Jost',sans-serif;
 }
-.c-btn:hover{background:rgba(0,0,0,.06)}
-.c-num{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);min-width:26px;text-align:center}
+.c-btn:hover{background:rgba(0,0,0,.12)}
+.c-num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink);min-width:28px;text-align:center}
 
 .submit-btn{
   display:block;width:100%;
@@ -295,12 +341,12 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 .submit-btn:disabled{opacity:.45;cursor:not-allowed}
 .spin{display:inline-block;width:12px;height:12px;border:1.5px solid rgba(0,0,0,.15);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.status{margin-top:.9rem;font-size:12px;text-align:center;min-height:16px}
-.status.err{color:#f08080}
+.status{margin-top:.9rem;font-size:13px;text-align:center;min-height:16px;color:#333}
+.status.err{color:#d2433c}
 .success-wrap{display:none;text-align:center;padding:3rem 0}
 .success-mark{font-family:'Cormorant Garamond',serif;font-size:52px;font-style:italic;color:var(--sand);margin-bottom:.8rem}
 .success-wrap h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);margin-bottom:.6rem}
-.success-wrap p{font-size:12px;color:var(--muted);line-height:1.9;letter-spacing:.04em}
+.success-wrap p{font-size:13px;color:#333;line-height:1.9;letter-spacing:.04em}
 
 /* ── FOOTER ── */
 .footer{
@@ -323,6 +369,8 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
   .form-section{padding:5rem 1.5rem 4rem}
   .g2{grid-template-columns:1fr;gap:0}
   .date-meta{flex-direction:column;gap:.6rem}
+  .calendar-section{padding:3.5rem 1.5rem 4.5rem}
+  .cal-grid{padding:1.2rem .8rem 1.4rem}
 }
 </style>
 </head>
@@ -362,6 +410,27 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
     <span>芳庭路壹號莊園</span>
     <span>午宴</span>
     <span>流程後續通知</span>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="calendar-section" aria-label="婚禮日期月曆">
+  <p class="cal-eyebrow">Save the Date</p>
+  <div class="cal-card">
+    <div class="cal-head">
+      <div class="cal-month">September</div>
+      <span class="cal-year">2026</span>
+    </div>
+    <div class="cal-grid">
+      <span class="cal-dow">S</span><span class="cal-dow">M</span><span class="cal-dow">T</span><span class="cal-dow">W</span><span class="cal-dow">T</span><span class="cal-dow">F</span><span class="cal-dow">S</span>
+      <span class="cal-day empty"></span><span class="cal-day empty"></span>
+      <span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day">5</span>
+      <span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span>
+      <span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day">19</span>
+      <span class="cal-day">20</span><span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day circled">26</span>
+      <span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
+    </div>
+    <div class="cal-foot">Sat · 午宴</div>
   </div>
 </section>
 
@@ -458,7 +527,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
             <button type="button" class="c-btn" id="cnt-" aria-label="減少人數">−</button>
             <span class="c-num" id="cnt-val">1</span>
             <button type="button" class="c-btn" id="cnt+" aria-label="增加人數">+</button>
-            <span style="font-size:12px;color:var(--muted)">位</span>
+            <span style="font-size:14px;color:#333">位</span>
           </div>
         </div>
         <div class="field">
@@ -478,7 +547,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
             <button type="button" class="c-btn" id="cs-" aria-label="減少座椅數">−</button>
             <span class="c-num" id="cs-val">1</span>
             <button type="button" class="c-btn" id="cs+" aria-label="增加座椅數">+</button>
-            <span style="font-size:12px;color:var(--muted)">個</span>
+            <span style="font-size:14px;color:#333">個</span>
           </div>
         </div>
       </div>
@@ -516,6 +585,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
           <label class="tag"><input type="radio" name="pickup" value="台中高鐵站"><span>台中高鐵站</span></label>
           <label class="tag"><input type="radio" name="pickup" value="台中火車站"><span>台中火車站</span></label>
         </div>
+        <p style="font-size:12px;color:#333;margin-top:9px;line-height:1.7">※ 接駁車僅停靠台中高鐵站、台中火車站這兩站，請選擇您方便的上車地點。</p>
       </div>
       
 
@@ -547,7 +617,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 </footer>
 
 <script>
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLUjt2Q2yua3NM54I52EoUPI7tOSK6MRgsEEVTkugLW-tU8RH6c7__Ah6ilTllYfv9/exec';
 
 document.getElementById('hero-img').addEventListener('load', function(){
   this.classList.add('loaded');
@@ -570,9 +640,9 @@ function tick() {
 setInterval(tick, 1000); tick();
 
 document.querySelectorAll('.tags').forEach(grp => {
-  grp.querySelectorAll('.tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-      const inp = tag.querySelector('input');
+  grp.querySelectorAll('.tag input').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const tag = inp.closest('.tag');
       if (inp.type === 'radio') {
         grp.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
         tag.classList.add('on');
@@ -583,7 +653,7 @@ document.querySelectorAll('.tags').forEach(grp => {
         if (inp.name === 'childseat')
           document.getElementById('childseat-count-wrap').style.display = inp.value === '需要' ? 'block' : 'none';
       } else {
-        tag.classList.toggle('on');
+        tag.classList.toggle('on', inp.checked);
         const hasOther = [...grp.querySelectorAll('.tag.on input')].some(i => i.value === '其他');
         document.getElementById('diet-other').style.display = hasOther ? 'block' : 'none';
       }
