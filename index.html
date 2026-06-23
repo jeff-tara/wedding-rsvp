@@ -530,7 +530,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
             <span style="font-size:14px;color:#333">位</span>
           </div>
         </div>
-        <div class="field">
+        <div class="field" id="comp-wrap" style="display:none">
           <label>同行者姓名</label>
           <input type="text" id="f-comp" placeholder="例：王小明、李小花">
         </div>
@@ -666,8 +666,13 @@ let cs=1;
 document.getElementById('cs-').addEventListener('click',()=>{ if(cs>1){cs--;document.getElementById('cs-val').textContent=cs;} });
 document.getElementById('cs+').addEventListener('click',()=>{ if(cs<9){cs++;document.getElementById('cs-val').textContent=cs;} });
 
-document.getElementById('cnt-').addEventListener('click', () => { if (gc > 1) { gc--; document.getElementById('cnt-val').textContent = gc; } });
-document.getElementById('cnt+').addEventListener('click', () => { if (gc < 10) { gc++; document.getElementById('cnt-val').textContent = gc; } });
+function updateCompWrap(){
+  const compWrap = document.getElementById('comp-wrap');
+  compWrap.style.display = gc > 1 ? 'block' : 'none';
+  if (gc === 1) document.getElementById('f-comp').value = '';
+}
+document.getElementById('cnt-').addEventListener('click', () => { if (gc > 1) { gc--; document.getElementById('cnt-val').textContent = gc; updateCompWrap(); } });
+document.getElementById('cnt+').addEventListener('click', () => { if (gc < 10) { gc++; document.getElementById('cnt-val').textContent = gc; updateCompWrap(); } });
 
 document.getElementById('rsvp').addEventListener('submit', async e => {
   e.preventDefault();
