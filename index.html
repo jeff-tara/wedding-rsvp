@@ -609,6 +609,12 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
       <h3>感謝您的回覆</h3>
       <p>我們已收到您的出席資訊<br>期待與您共同見證這美好的一天</p>
     </div>
+
+    <div class="success-wrap" id="closed-wrap">
+      <div class="success-mark">✦</div>
+      <h3>回覆已截止</h3>
+      <p>感謝大家的熱情回覆<br>如需異動出席資訊，請直接聯繫新人</p>
+    </div>
   </div>
 </section>
 
@@ -618,6 +624,13 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
 
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLUjt2Q2yua3NM54I52EoUPI7tOSK6MRgsEEVTkugLW-tU8RH6c7__Ah6ilTllYfv9/exec';
+
+// 手動截止開關：要關閉回覆時把這裡改成 true 再推送即可
+const FORM_CLOSED = false;
+if (FORM_CLOSED) {
+  document.getElementById('rsvp').style.display = 'none';
+  document.getElementById('closed-wrap').style.display = 'block';
+}
 
 document.getElementById('hero-img').addEventListener('load', function(){
   this.classList.add('loaded');
