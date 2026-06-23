@@ -503,6 +503,17 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--paper);color
         <input type="tel" id="f-phone" placeholder="0912-345-678">
       </div>
       <div class="field">
+        <label>是否需要電子喜帖</label>
+        <div class="tags">
+          <label class="tag"><input type="radio" name="einvite" value="不需要"><span>不需要</span></label>
+          <label class="tag"><input type="radio" name="einvite" value="需要"><span>需要</span></label>
+        </div>
+      </div>
+      <div class="field" id="einvite-email-wrap" style="display:none">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="f-einvite-email" placeholder="請輸入您的Email">
+      </div>
+      <div class="field">
         <label>與新人的關係 <span class="req">*</span></label>
         <div class="tags">
           <label class="tag"><input type="radio" name="relation" value="新郎親友"><span>新郎親友</span></label>
@@ -665,6 +676,8 @@ document.querySelectorAll('.tags').forEach(grp => {
           document.getElementById('carpool-wrap').style.display = inp.value === '需要搭接駁車' ? 'block' : 'none';
         if (inp.name === 'childseat')
           document.getElementById('childseat-count-wrap').style.display = inp.value === '需要' ? 'block' : 'none';
+        if (inp.name === 'einvite')
+          document.getElementById('einvite-email-wrap').style.display = inp.value === '需要' ? 'block' : 'none';
       } else {
         tag.classList.toggle('on', inp.checked);
         const hasOther = [...grp.querySelectorAll('.tag.on input')].some(i => i.value === '其他');
@@ -692,13 +705,18 @@ document.getElementById('rsvp').addEventListener('submit', async e => {
   const name = document.getElementById('f-name').value.trim();
   const rel = document.querySelector('input[name=relation]:checked');
   const att = document.querySelector('input[name=attend]:checked');
+  const einvite = document.querySelector('input[name=einvite]:checked');
+  const einviteEmail = document.getElementById('f-einvite-email').value.trim();
   if (!name) { alert('請填寫您的姓名'); return; }
   if (!rel)  { alert('請選擇與新人的關係'); return; }
   if (!att)  { alert('請選擇是否出席'); return; }
+  if (einvite && einvite.value === '需要' && !einviteEmail) { alert('請填寫收電子喜帖的Email'); return; }
   const diet = [...document.querySelectorAll('#diet-tags .tag.on input')].map(i => i.value).join('、');
   const payload = {
     姓名: name,
     電話: document.getElementById('f-phone').value,
+    電子喜帖: einvite ? einvite.value : '不需要',
+    喜帖Email: einvite && einvite.value === '需要' ? einviteEmail : '',
     與新人關係: rel.value, 出席狀態: att.value,
     出席人數: att.value === '確定出席' ? gc : 0,
     同行者: document.getElementById('f-comp').value,
